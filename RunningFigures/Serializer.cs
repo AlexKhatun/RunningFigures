@@ -14,7 +14,8 @@ namespace RunningFigures
         {
             binaryFormatter = new BinaryFormatter();
             figureList = new List<Figure>();
-            }
+        }
+
         private readonly BinaryFormatter binaryFormatter;
         private List<Figure> figureList;
         private XDocument doc;
@@ -25,6 +26,7 @@ namespace RunningFigures
         private int dx;
         private int dy;
         private bool isMoveble;
+
         public void BinarySerialization(List<Figure> figures)
         {
             using (FileStream fs = new FileStream("figures.dat", FileMode.OpenOrCreate))
@@ -38,13 +40,11 @@ namespace RunningFigures
             figureList.Clear();
             using (FileStream fs = new FileStream("figures.dat", FileMode.OpenOrCreate))
             {
-                //foreach (Figure i in (List<Figure>)binaryFormatter.Deserialize(fs))
-                //{
                     figureList = (List<Figure>)binaryFormatter.Deserialize(fs);
-                //}
             }
             return figureList;
         }
+
         public void XmlSerializarion(List<Figure> figures)
         {
             doc = new XDocument(new XElement("Figures"));
@@ -57,12 +57,12 @@ namespace RunningFigures
                 addingElement.SetAttributeValue("Dx", i.Dx);
                 addingElement.SetAttributeValue("Dy", i.Dy);
                 addingElement.SetAttributeValue("IsMoveble", i.IsMoveble);
-                addingElement.SetAttributeValue("ModelHeight", i.GetModel().Height);
-                addingElement.SetAttributeValue("ModelWidth", i.GetModel().Width);
-                addingElement.SetAttributeValue("ColorA", i.GetColor().A);
-                addingElement.SetAttributeValue("ColorB", i.GetColor().B);
-                addingElement.SetAttributeValue("ColorG", i.GetColor().G);
-                addingElement.SetAttributeValue("ColorR", i.GetColor().R);
+                addingElement.SetAttributeValue("ModelHeight", i.Height);
+                addingElement.SetAttributeValue("ModelWidth", i.Width);
+                addingElement.SetAttributeValue("ColorA", i.Color.A);
+                addingElement.SetAttributeValue("ColorB", i.Color.B);
+                addingElement.SetAttributeValue("ColorG", i.Color.G);
+                addingElement.SetAttributeValue("ColorR", i.Color.R);
                 doc.Root.Add(addingElement);
             }
             doc.Save("figures.xml");
@@ -89,38 +89,18 @@ namespace RunningFigures
             }
             return figureList;
         }
-
-
-        public void JsonSerializarion(List<Figure> figures)
-        {
-            StreamWriter strOut = new StreamWriter("figures.json");
-            DataContractSerializer serializer = new DataContractSerializer(typeof(List<Figure>));
-            serializer.WriteObject(strOut.BaseStream, figures);
-            strOut.Close();
-        }
-
-        public List<Figure> JsonDeserialization()
-        {
-            figureList.Clear();
-            StreamReader strIn = new StreamReader("figures.json");
-            DataContractSerializer deserializer = new DataContractSerializer(typeof(List<Figure>));
-            figureList = (List<Figure>)deserializer.ReadObject(strIn.BaseStream);
-            strIn.Close();
-            return figureList;
-        }
-
         private Circle ConstructCircle(XElement element)
         {
-           x = Convert.ToInt32(element.Attribute("X").Value);
-           y = Convert.ToInt32(element.Attribute("Y").Value);
-           dx = Convert.ToInt32(element.Attribute("Dx").Value);
-           dy = Convert.ToInt32(element.Attribute("Dy").Value);
-           isMoveble = Convert.ToBoolean(element.Attribute("IsMoveble").Value);
-           model = new Rectangle(Convert.ToInt32(element.Attribute("X").Value),
-                    Convert.ToInt32(element.Attribute("Y").Value),
-                    Convert.ToInt32(element.Attribute("ModelWidth").Value),
-                    Convert.ToInt32(element.Attribute("ModelHeight").Value)
-                    );
+            x = Convert.ToInt32(element.Attribute("X").Value);
+            y = Convert.ToInt32(element.Attribute("Y").Value);
+            dx = Convert.ToInt32(element.Attribute("Dx").Value);
+            dy = Convert.ToInt32(element.Attribute("Dy").Value);
+            isMoveble = Convert.ToBoolean(element.Attribute("IsMoveble").Value);
+            model = new Rectangle(Convert.ToInt32(element.Attribute("X").Value),
+                     Convert.ToInt32(element.Attribute("Y").Value),
+                     Convert.ToInt32(element.Attribute("ModelWidth").Value),
+                     Convert.ToInt32(element.Attribute("ModelHeight").Value)
+                     );
             color = Color.FromArgb(Convert.ToInt32(element.Attribute("ColorA").Value),
                 Convert.ToInt32(element.Attribute("ColorR").Value),
                 Convert.ToInt32(element.Attribute("ColorG").Value),
@@ -165,5 +145,26 @@ namespace RunningFigures
                 Convert.ToInt32(element.Attribute("ColorB").Value));
             return new Triangle(x, y, dx, dy, color, model, isMoveble);
         }
+
+
+        public void JsonSerializarion(List<Figure> figures)
+        {
+            StreamWriter strOut = new StreamWriter("figures.json");
+            DataContractSerializer serializer = new DataContractSerializer(typeof(List<Figure>));
+            serializer.WriteObject(strOut.BaseStream, figures);
+            strOut.Close();
+        }
+
+        public List<Figure> JsonDeserialization()
+        {
+            figureList.Clear();
+            StreamReader strIn = new StreamReader("figures.json");
+            DataContractSerializer deserializer = new DataContractSerializer(typeof(List<Figure>));
+            figureList = (List<Figure>)deserializer.ReadObject(strIn.BaseStream);
+            strIn.Close();
+            return figureList;
+        }
+
+        
     }
 }

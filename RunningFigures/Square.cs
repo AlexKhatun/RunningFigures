@@ -15,40 +15,26 @@ namespace RunningFigures
         }
 
         public Square(int x, int y, int dx, int dy, Color color, Rectangle model, bool isMove)
-            : base(x, y, dx, dy, color, model, isMove)
-        {
-            
-        }
+            : base(x, y, dx, dy, color, model, isMove) { }
 
         public override void Move(PictureBox drawingArea, List<Figure> figures )
         {
-            
-            if (Model.X + Model.Width >= drawingArea.Size.Width || Model.X <= 0)
+            base.Move(drawingArea, figures);
+            foreach (var i in figures)
             {
-                Dx = -Dx;
-            }
-            else if (Model.Y + Model.Height >= drawingArea.Size.Height || Model.Y <= 0)
-            {
-                Dy = -Dy;
-            }
-            else
-            {
-                foreach (var i in figures)
+                if (this != i && IntersectWith(i))
                 {
-                    if (Model.IntersectsWith(i.GetModel()) && Model != i.GetModel())
-                    {
-                        Dx = -Dx;
-                        Dy = -Dy;
-                    }
+                    Dx = -Dx;
+                    Dy = -Dy;
                 }
             }
-            Model.X += +Dx;
-            Model.Y += +Dy;
+            X += +Dx;
+            Y += +Dy;
         }
 
         public override void Draw(Graphics graphics)
         {
-            graphics.FillRectangle(new SolidBrush(Color), Model );
+            graphics.FillRectangle(new SolidBrush(color), Model );
         }
     }
 }

@@ -20,7 +20,7 @@ namespace RunningFigures
             Y = Rand.Next(50, 150);
             Dx = Rand.Next(-5, 5);
             Dy = Rand.Next(-5, 5);
-            Color = Color.FromArgb(Rand.Next(128, 255), Rand.Next(128, 255), Rand.Next(128, 255), Rand.Next(128, 255));
+            color = Color.FromArgb(Rand.Next(128, 255), Rand.Next(128, 255), Rand.Next(128, 255), Rand.Next(128, 255));
             IsMoveble = true;
             IsSelected = false;
         }
@@ -31,49 +31,116 @@ namespace RunningFigures
             this.Y = y;
             this.Dx = dx;
             this.Dy = dy;
-            this.Color = color;
+            this.color = color;
             this.Model = model;
             this.IsMoveble = isMove;
             this.IsSelected = false;
             Rand = new Random();
         }
+
         [DataMember]
-        public int X { get; set; }
+        public int X
+        {
+            get
+            {
+                return Model.X; 
+            }
+            protected set
+            {
+                Model.X = value;
+            }
+        }
+
         [DataMember]
-        public int Y { get; set; }
+        public int Y
+        {
+            get
+            {
+                return Model.Y;
+            }
+            protected set
+            {
+                Model.Y = value;
+            }
+        }
+        [DataMember]
+        public int Width
+        {
+            get
+            {
+                return Model.Width;
+            }
+            protected set
+            {
+                Model.Width = value;
+            }
+        }
+        [DataMember]
+        public int Height
+        {
+            get
+            {
+                return Model.Height;
+            }
+            protected set
+            {
+                Model.Height = value;
+            }
+        }
+
         [DataMember]
         public int Dx { get; set; }
+
         [DataMember]
         public int Dy { get; set; }
+
+        protected Color color;
+
         [DataMember]
-        protected Color Color { get; set; }
+        public Color Color
+        {
+            get
+            {
+                return this.color;
+            }
+            protected set
+            {
+                this.color = value;
+            }
+        }
         [DataMember]
         protected Random Rand;
-        [DataMember]
+
         protected Rectangle Model;
         [DataMember]
         public bool IsSelected { get; private set; }
         [DataMember]
         public bool IsMoveble { get; set; }
 
-        public abstract void Move(PictureBox drawingArea, List<Figure> figures);
+        public virtual void Move(PictureBox drawingArea, List<Figure> figures)
+        {
+            if (Model.X + Model.Width >= drawingArea.Size.Width || Model.X <= 0)
+            {
+                Dx = -Dx;
+            }
+            else if (Model.Y + Model.Height >= drawingArea.Size.Height || Model.Y <= 0)
+            {
+                Dy = -Dy;
+            }
+        }
 
         public abstract void Draw(Graphics graphics);
-
-        public Rectangle GetModel()
-        {
-            return this.Model;
-        }
-
-        public Color GetColor()
-        {
-            return this.Color;
-        }
 
         public void Select()
         {
             IsSelected = !IsSelected;
-            Color = IsSelected ? Color.Black : Color.FromArgb(Rand.Next(255), Rand.Next(255), Rand.Next(255), Rand.Next(255));
+            color = IsSelected ? Color.BlueViolet : Color.FromArgb(Rand.Next(255), Rand.Next(255), Rand.Next(255), Rand.Next(255));
+        }
+
+        public bool IntersectWith(Figure figure)
+        {
+            bool flag = Model.IntersectsWith(figure.Model);
+            return flag;
         }
     }
 }

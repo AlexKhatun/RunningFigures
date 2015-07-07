@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Figures>
-  <Figure Name="RunningFigures.Square" X="161" Y="96" Dx="1" Dy="4" IsMoveble="true" ModelHeight="45" ModelWidth="45" ColorA="228" ColorB="219" ColorG="189" ColorR="165" />
-  <Figure Name="RunningFigures.Triangle" X="92" Y="148" Dx="0" Dy="-1" IsMoveble="true" ModelHeight="40" ModelWidth="54" ColorA="197" ColorB="186" ColorG="220" ColorR="135" />
-  <Figure Name="RunningFigures.Circle" X="37" Y="43" Dx="2" Dy="2" IsMoveble="true" ModelHeight="24" ModelWidth="24" ColorA="236" ColorB="202" ColorG="223" ColorR="226" />
+  <Figure Name="RunningFigures.Square" X="297" Y="114" Dx="-3" Dy="2" IsMoveble="true" ModelHeight="52" ModelWidth="52" ColorA="146" ColorB="225" ColorG="186" ColorR="190" />
+  <Figure Name="RunningFigures.Triangle" X="352" Y="40" Dx="3" Dy="3" IsMoveble="true" ModelHeight="42" ModelWidth="62" ColorA="213" ColorB="188" ColorG="196" ColorR="163" />
+  <Figure Name="RunningFigures.Circle" X="252" Y="100" Dx="-4" Dy="-4" IsMoveble="true" ModelHeight="56" ModelWidth="56" ColorA="152" ColorB="165" ColorG="178" ColorR="158" />
 </Figures>
