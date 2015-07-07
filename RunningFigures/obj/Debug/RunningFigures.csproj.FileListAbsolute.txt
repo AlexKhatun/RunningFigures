@@ -1,0 +1,15 @@
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\bin\Debug\RunningFigures.exe.config
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\bin\Debug\RunningFigures.exe
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\bin\Debug\RunningFigures.pdb
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\RunningFigures.csprojResolveAssemblyReference.cache
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\RunningFigures.MainForm.resources
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\RunningFigures.Properties.Resources.resources
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\RunningFigures.csproj.GenerateResource.Cache
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\RunningFigures.exe
+c:\users\alexkhatuntsev\documents\visual studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\RunningFigures.pdb
+C:\Users\AlexKhatuntsev\Documents\Visual Studio 2013\Projects\RunningFigures\RunningFigures\bin\Debug\en\RunningFigures.resources.dll
+C:\Users\AlexKhatuntsev\Documents\Visual Studio 2013\Projects\RunningFigures\RunningFigures\bin\Debug\ru\RunningFigures.resources.dll
+C:\Users\AlexKhatuntsev\Documents\Visual Studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\RunningFigures.MainForm.en.resources
+C:\Users\AlexKhatuntsev\Documents\Visual Studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\RunningFigures.MainForm.ru.resources
+C:\Users\AlexKhatuntsev\Documents\Visual Studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\en\RunningFigures.resources.dll
+C:\Users\AlexKhatuntsev\Documents\Visual Studio 2013\Projects\RunningFigures\RunningFigures\obj\Debug\ru\RunningFigures.resources.dll
