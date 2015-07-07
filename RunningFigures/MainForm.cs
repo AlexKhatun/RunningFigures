@@ -68,22 +68,7 @@ namespace RunningFigures
                     if (FiguresListView.SelectedNode.Index == counter)
                     {
                         i.IsMoveble = !i.IsMoveble;
-                        if (i.IsMoveble && Settings.Default.Language == "ru")
-                        {
-                            StopButton.Text = "Стоп";
-                        }
-                        if (!i.IsMoveble && Settings.Default.Language == "ru")
-                        {
-                            StopButton.Text = "Старт";
-                        }
-                        if (i.IsMoveble && Settings.Default.Language == "en")
-                        {
-                            StopButton.Text = "Stop";
-                        }
-                        if (!i.IsMoveble && Settings.Default.Language == "en")
-                        {
-                            StopButton.Text = "Start";
-                        }
+                        StopButton.Text = ChangeLanguageStopButton(i.IsMoveble);
                         FiguresListView.SelectedNode.Text = i.GetType().ToString().Substring(15) + ' ' + i.IsMoveble;
                     }
                     counter++;
@@ -103,26 +88,33 @@ namespace RunningFigures
                 }
                 if (FiguresListView.SelectedNode.Index == counter)
                 {
-                    if (i.IsMoveble && Settings.Default.Language == "ru")
-                    {
-                        StopButton.Text = "Стоп";
-                    }
-                    if (!i.IsMoveble && Settings.Default.Language == "ru")
-                    {
-                        StopButton.Text = "Старт";
-                    }
-                    if (i.IsMoveble && Settings.Default.Language == "en")
-                    {
-                        StopButton.Text = "Stop";
-                    }
-                    if (!i.IsMoveble && Settings.Default.Language == "en")
-                    {
-                        StopButton.Text = "Start";
-                    }
+                    StopButton.Text = ChangeLanguageStopButton(i.IsMoveble);
                     i.Select();
                 }
                 counter++;
             }
+        }
+
+        private string ChangeLanguageStopButton(bool isMove)
+        {
+            string result = "";
+            if (isMove && Settings.Default.Language == "ru")
+            {
+                result = "Стоп";
+            }
+            if (!isMove && Settings.Default.Language == "ru")
+            {
+                result = "Старт";
+            }
+            if (isMove && Settings.Default.Language == "en")
+            {
+                result = "Stop";
+            }
+            if (!isMove && Settings.Default.Language == "en")
+            {
+                result = "Start";
+            }
+            return result;
         }
 
         private void EnButton_Click(object sender, EventArgs e)
