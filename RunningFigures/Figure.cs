@@ -55,7 +55,7 @@ namespace RunningFigures
             {
                 return Model.X; 
             }
-            protected set
+            set
             {
                 Model.X = value;
             }
@@ -68,7 +68,7 @@ namespace RunningFigures
             {
                 return Model.Y;
             }
-            protected set
+            set
             {
                 Model.Y = value;
             }
@@ -151,6 +151,11 @@ namespace RunningFigures
 
         public virtual void Move(PictureBox drawingArea, List<Figure> figures)
         {
+            if (this.X + Model.Width <= 0 || this.X >= drawingArea.Size.Width || this.Y + Model.Height <= 0 ||
+                this.Y >= drawingArea.Size.Height)
+            {
+               throw new FigureOutOfRangeException("Фигура потерялась!");
+            }
             if (Model.X + Model.Width >= drawingArea.Size.Width || Model.X <= 0)
             {
                 Dx = -Dx;

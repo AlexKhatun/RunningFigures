@@ -82,7 +82,15 @@ namespace RunningFigures
                 i.Draw(e.Graphics);
                 if (i.IsMoveble)
                 {
-                    i.Move(DrawingArea, figures);
+                    try
+                    {
+                        i.Move(DrawingArea, figures);
+                    }
+                    catch (FigureOutOfRangeException ex)
+                    {
+                        i.X = 50;
+                        i.Y = 50;
+                    }
                 }
             }
         }
