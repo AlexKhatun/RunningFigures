@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using RunningFigures.Properties;
 
@@ -11,6 +13,7 @@ namespace RunningFigures
     {
         public MainForm()
         {
+            Task.Factory.StartNew(this.Console1);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(Settings.Default.Language);
             InitializeComponent();
@@ -18,10 +21,36 @@ namespace RunningFigures
             timerRefresher.Interval = 10;
             figures = new List<Figure>();
             serializer = new Serializer();
+
         }
 
-        private Serializer serializer;
-        private List<Figure> figures;
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool AllocConsole();
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool FreeConsole();
+
+        private void Console1()
+        {
+            if (AllocConsole())
+            {
+                System.Console.WriteLine("Для выхода наберите exit.");
+                while (true)
+                {
+                    string output = System.Console.ReadLine();
+                    if (output == "exit")
+                    {
+                        break;
+                    }
+                }
+
+                FreeConsole();
+            }
+        }
+        private readonly Serializer serializer;
+        private readonly List<Figure> figures;
 
         private void SquareButton_Click(object sender, EventArgs e)
         {
@@ -133,7 +162,6 @@ namespace RunningFigures
 
         private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //xmlFormatter.Serialize(new FileStream("figures.xml", FileMode.OpenOrCreate), figures);
             serializer.XmlSerializarion(figures);
         }
 

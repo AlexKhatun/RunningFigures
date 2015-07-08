@@ -1,11 +1,17 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Media;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 
 namespace RunningFigures
 {
+
+    public delegate void BeepDelegate();
+
+
     [Serializable]
     [DataContract]
     [KnownType(typeof(Triangle))]
@@ -23,6 +29,9 @@ namespace RunningFigures
             color = Color.FromArgb(Rand.Next(128, 255), Rand.Next(128, 255), Rand.Next(128, 255), Rand.Next(128, 255));
             IsMoveble = true;
             IsSelected = false;
+            NewClash += ClashFigure;
+            Beep += SystemSounds.Beep.Play;
+            Beep -= SystemSounds.Beep.Play;
         }
 
         protected Figure(int x, int y, int dx, int dy, Color color, Rectangle model, bool isMove)
@@ -36,6 +45,8 @@ namespace RunningFigures
             this.IsMoveble = isMove;
             this.IsSelected = false;
             Rand = new Random();
+            NewClash += ClashFigure;
+            Beep += SystemSounds.Beep.Play;
         }
 
         [DataMember]
@@ -111,11 +122,33 @@ namespace RunningFigures
         [DataMember]
         protected Random Rand;
 
-        protected Rectangle Model;
+        public Rectangle Model;
         [DataMember]
         public bool IsSelected { get; private set; }
         [DataMember]
         public bool IsMoveble { get; set; }
+
+        public FiguresClash FiguresClash = new FiguresClash();
+
+        public event EventHandler<FiguresClashEventArgs> NewClash;
+
+        private BeepDelegate Beep;
+
+        public void AddBeep()
+        {
+            Beep += SystemSounds.Beep.Play;
+        }
+
+        public void RemoveBeep()
+        {
+            Beep -= SystemSounds.Beep.Play;
+        }
+
+        public void FiguresClashed(Figure enemy, Point p)
+        {
+            FiguresClashEventArgs e = new FiguresClashEventArgs(this, enemy, p);
+            this.OnNewClash(e);
+        }
 
         public virtual void Move(PictureBox drawingArea, List<Figure> figures)
         {
@@ -127,6 +160,8 @@ namespace RunningFigures
             {
                 Dy = -Dy;
             }
+            X += Dx;
+            Y += Dy;
         }
 
         public abstract void Draw(Graphics graphics);
@@ -141,6 +176,21 @@ namespace RunningFigures
         {
             bool flag = Model.IntersectsWith(figure.Model);
             return flag;
+        }
+
+        protected virtual void OnNewClash(FiguresClashEventArgs e)
+        {
+            EventHandler<FiguresClashEventArgs> temp = this.NewClash;
+            if (temp != null)
+            {
+                temp(this, e);
+            }
+        }
+        private void ClashFigure(object sender, FiguresClashEventArgs e)
+        {
+            string s = string.Format(e.Figure1.GetType().ToString(), e.Figure2.GetType().ToString(), e.Point.X, e.Point.Y);
+            Console.WriteLine(e.Figure1.GetType().ToString().Substring(15) + ' ' + e.Figure2.GetType().ToString().Substring(15) + ' ' + e.Point.X + ' ' + e.Point.Y);
+            Beep();
         }
     }
 }

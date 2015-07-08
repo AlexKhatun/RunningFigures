@@ -19,17 +19,14 @@ namespace RunningFigures
 
         public override void Move(PictureBox drawingArea, List<Figure> figures )
         {
-            base.Move(drawingArea, figures);
             foreach (var i in figures)
             {
                 if (this != i && IntersectWith(i))
                 {
-                    Dx = -Dx;
-                    Dy = -Dy;
+                    FiguresClash.FigureClash(this, i);
                 }
             }
-            X += +Dx;
-            Y += +Dy;
+            base.Move(drawingArea, figures);
         }
 
         public override void Draw(Graphics graphics)
