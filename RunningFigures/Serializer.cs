@@ -43,6 +43,10 @@ namespace RunningFigures
             {
                     figureList = (List<Figure>)binaryFormatter.Deserialize(fs);
             }
+            //foreach (var i in figureList)
+            //{
+            //    i.Beep += SystemSounds.Beep.Play;
+            //}
             return figureList;
         }
 

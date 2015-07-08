@@ -131,7 +131,8 @@ namespace RunningFigures
 
         public event EventHandler<FiguresClashEventArgs> NewClash;
 
-        public BeepDelegate Beep { get; set; }
+        [NonSerialized] 
+        public BeepDelegate Beep;
 
         public void AddBeep()
         {
