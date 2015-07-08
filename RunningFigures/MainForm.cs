@@ -114,6 +114,14 @@ namespace RunningFigures
                 if (i.IsSelected)
                 {
                     i.Select();
+                    try
+                    {
+                        BeepCountTextBox.Text = i.Beep.GetInvocationList().GetLength(0).ToString();
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        BeepCountTextBox.Text = "0";
+                    }
                 }
                 if (FiguresListView.SelectedNode.Index == counter)
                 {
@@ -204,6 +212,44 @@ namespace RunningFigures
             figures.Add(figure);
             FiguresListView.Nodes.Add((FiguresListView.Nodes.Count).ToString(),
             figure.GetType().ToString().Substring(15) + ' ' + figure.IsMoveble);
+        }
+
+        private void PlusButton_Click(object sender, EventArgs e)
+        {
+            int counter = 0;
+            foreach (var i in figures)
+            {
+                if (FiguresListView.SelectedNode.Index == counter)
+                {
+                    i.AddBeep();
+                    BeepCountTextBox.Text = i.Beep.GetInvocationList().GetLength(0).ToString();
+                    break;
+                }
+                counter++;
+            }
+            
+        }
+
+        private void MinusButton_Click(object sender, EventArgs e)
+        {
+            int counter = 0;
+            foreach (var i in figures)
+            {
+                if (FiguresListView.SelectedNode.Index == counter)
+                {
+                    i.RemoveBeep();
+                    try
+                    {
+                        BeepCountTextBox.Text = i.Beep.GetInvocationList().GetLength(0).ToString();
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        BeepCountTextBox.Text = "0";
+                    }
+                    break;
+                }
+                counter++;
+            }
         }
 
     }

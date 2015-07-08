@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RunningFigures
-{
+{   [Serializable]
     public class FiguresClash
     {
         public void FigureClash(Figure figure1, Figure figure2)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Media;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Linq;
@@ -162,6 +163,12 @@ namespace RunningFigures
             DataContractSerializer deserializer = new DataContractSerializer(typeof(List<Figure>));
             figureList = (List<Figure>)deserializer.ReadObject(strIn.BaseStream);
             strIn.Close();
+            foreach (var i in figureList)
+            {
+                i.Beep += SystemSounds.Beep.Play;
+                i.NewClash += i.ClashFigure;
+                i.FiguresClash = new FiguresClash();
+            }
             return figureList;
         }
 

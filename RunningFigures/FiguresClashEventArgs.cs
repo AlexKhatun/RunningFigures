@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RunningFigures
 {
+    [Serializable]
     public class FiguresClashEventArgs : EventArgs
     {
         private readonly Figure figure1, figure2;

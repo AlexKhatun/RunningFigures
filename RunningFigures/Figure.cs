@@ -31,7 +31,6 @@ namespace RunningFigures
             IsSelected = false;
             NewClash += ClashFigure;
             Beep += SystemSounds.Beep.Play;
-            Beep -= SystemSounds.Beep.Play;
         }
 
         protected Figure(int x, int y, int dx, int dy, Color color, Rectangle model, bool isMove)
@@ -132,7 +131,7 @@ namespace RunningFigures
 
         public event EventHandler<FiguresClashEventArgs> NewClash;
 
-        private BeepDelegate Beep;
+        public BeepDelegate Beep { get; set; }
 
         public void AddBeep()
         {
@@ -186,11 +185,19 @@ namespace RunningFigures
                 temp(this, e);
             }
         }
-        private void ClashFigure(object sender, FiguresClashEventArgs e)
+
+        public void ClashFigure(object sender, FiguresClashEventArgs e)
         {
-            string s = string.Format(e.Figure1.GetType().ToString(), e.Figure2.GetType().ToString(), e.Point.X, e.Point.Y);
             Console.WriteLine(e.Figure1.GetType().ToString().Substring(15) + ' ' + e.Figure2.GetType().ToString().Substring(15) + ' ' + e.Point.X + ' ' + e.Point.Y);
-            Beep();
+            try
+            {
+                Beep();
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Для этой фигуры нет бипов!");
+            }
+            
         }
     }
 }
