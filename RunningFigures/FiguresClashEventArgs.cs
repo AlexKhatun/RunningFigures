@@ -3,12 +3,21 @@
     using System;
     using System.Drawing;
 
+    /// <summary>
+    /// Event of Figure clashing
+    /// </summary>
     [Serializable]
     public class FiguresClashEventArgs : EventArgs
     {
         private readonly Figure figure1, figure2;
         private readonly Point clashPoint;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FiguresClashEventArgs"/> class. 
+        /// </summary>
+        /// <param name="figure1">First figure</param>
+        /// <param name="figure2">Second figure</param>
+        /// <param name="point">Clashing point</param>
         public FiguresClashEventArgs(Figure figure1, Figure figure2, Point point) 
         { 
             this.figure1 = figure1; 

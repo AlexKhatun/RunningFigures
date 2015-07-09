@@ -7,8 +7,14 @@
     using System.Runtime.Serialization;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Delegate, which counted Beeps on Figure Clashing
+    /// </summary>
     public delegate void BeepDelegate();
 
+    /// <summary>
+    /// AbstractClass to all figures types
+    /// </summary>
     [Serializable]
     [DataContract]
     [KnownType(typeof(Triangle))]
@@ -16,22 +22,36 @@
     [KnownType(typeof(Square))]
     public abstract class Figure
     {
-        
-
-        protected Color color;
-
-        [DataMember]
-        protected Random Rand;
-
+        /// <summary>
+        /// On this model we building Figure
+        /// </summary>
         public Rectangle Model;
 
+        /// <summary>
+        /// Event clashing figures field
+        /// </summary>
         public FiguresClash FiguresClash = new FiguresClash();
 
-        public event EventHandler<FiguresClashEventArgs> NewClash;
-
+        /// <summary>
+        /// Beep counter
+        /// </summary>
         [NonSerialized] 
         public BeepDelegate Beep;
 
+        /// <summary>
+        /// Figure color
+        /// </summary>
+        private Color color;
+
+        /// <summary>
+        /// Field, which generic random on all other fields
+        /// </summary>
+        [DataMember]
+        private Random rand;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Figure"/> class. All fields will be random
+        /// </summary>
         protected Figure()
         {
             this.Rand = new Random();
@@ -46,6 +66,16 @@
             this.Beep += SystemSounds.Beep.Play;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Figure"/> class. 
+        /// </summary>
+        /// <param name="x">X Coordinate</param>
+        /// <param name="y">Y Coordinate</param>
+        /// <param name="dx">X Speed</param>
+        /// <param name="dy">Y Speed</param>
+        /// <param name="color">Figure Color</param>
+        /// <param name="model">Rectangle Model</param>
+        /// <param name="isMove">Can this figure move?</param>
         protected Figure(int x, int y, int dx, int dy, Color color, Rectangle model, bool isMove)
         {
             this.X = x;
@@ -60,6 +90,12 @@
             this.NewClash += this.ClashFigure;
             this.Beep += SystemSounds.Beep.Play;
         }
+
+        /// <summary>
+        /// Event of clashing figures
+        /// </summary>
+        public event EventHandler<FiguresClashEventArgs> NewClash;
+
         [DataMember]
         public int X
         {
@@ -67,6 +103,7 @@
             {
                 return this.Model.X;
             }
+
             set
             {
                 this.Model.X = value;
@@ -80,11 +117,13 @@
             {
                 return this.Model.Y;
             }
+
             set
             {
                 this.Model.Y = value;
             }
         }
+
         [DataMember]
         public int Width
         {
@@ -92,11 +131,13 @@
             {
                 return this.Model.Width;
             }
+
             protected set
             {
                 this.Model.Width = value;
             }
         }
+
         [DataMember]
         public int Height
         {
@@ -104,6 +145,7 @@
             {
                 return this.Model.Height;
             }
+
             protected set
             {
                 this.Model.Height = value;
@@ -123,6 +165,7 @@
             {
                 return this.color;
             }
+
             protected set
             {
                 this.color = value;
@@ -133,6 +176,19 @@
         public bool IsSelected { get; private set; }
         [DataMember]
         public bool IsMoveble { get; set; }
+
+        protected Random Rand
+        {
+            get
+            {
+                return this.rand;
+            }
+
+            set
+            {
+                this.rand = value;
+            }
+        }
 
         public void AddBeep()
         {
@@ -157,6 +213,7 @@
             {
                throw new FigureOutOfRangeException("Фигура потерялась!");
             }
+
             if (this.Model.X + this.Model.Width >= drawingArea.Size.Width || this.Model.X <= 0)
             {
                 this.Dx = -this.Dx;
@@ -165,6 +222,7 @@
             {
                 this.Dy = -this.Dy;
             }
+
             this.X += this.Dx;
             this.Y += this.Dy;
         }
@@ -183,15 +241,6 @@
             return flag;
         }
 
-        protected virtual void OnNewClash(FiguresClashEventArgs e)
-        {
-            EventHandler<FiguresClashEventArgs> temp = this.NewClash;
-            if (temp != null)
-            {
-                temp(this, e);
-            }
-        }
-
         public void ClashFigure(object sender, FiguresClashEventArgs e)
         {
             Console.WriteLine(e.Figure1.GetType().ToString().Substring(15) + ' ' + e.Figure2.GetType().ToString().Substring(15) + ' ' + e.Point.X + ' ' + e.Point.Y);
@@ -203,7 +252,15 @@
             {
                 Console.WriteLine("Для этой фигуры нет бипов!");
             }
-            
+        }
+
+        protected virtual void OnNewClash(FiguresClashEventArgs e)
+        {
+            EventHandler<FiguresClashEventArgs> temp = this.NewClash;
+            if (temp != null)
+            {
+                temp(this, e);
+            }
         }
     }
 }

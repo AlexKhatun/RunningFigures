@@ -3,6 +3,9 @@
     using System;
     using System.Drawing;
 
+    /// <summary>
+    /// Class, which describe clashing of figures, and changing it direction
+    /// </summary>
     [Serializable]
     public class FiguresClash
     {

@@ -9,6 +9,9 @@
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Xml.Linq;
 
+    /// <summary>
+    /// Class, which describe three types of serialization Figure 
+    /// </summary>
     public class Serializer
     {
         private readonly BinaryFormatter binaryFormatter;
@@ -22,6 +25,9 @@
         private int dy;
         private bool isMoveble;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Serializer"/> class. 
+        /// </summary>
         public Serializer()
         {
             this.binaryFormatter = new BinaryFormatter();
@@ -43,10 +49,12 @@
             {
                     this.figureList = (List<Figure>)this.binaryFormatter.Deserialize(fs);
             }
+
             foreach (var i in this.figureList)
             {
                 i.Beep += SystemSounds.Beep.Play;
             }
+
             return this.figureList;
         }
 
@@ -70,6 +78,7 @@
                 addingElement.SetAttributeValue("ColorR", i.Color.R);
                 this.doc.Root.Add(addingElement);
             }
+
             this.doc.Save("figures.xml");
         }
 
@@ -92,8 +101,35 @@
                         break;
                 }
             }
-            return tthis.figureList;
+
+            return this.figureList;
         }
+
+        public void JsonSerializarion(List<Figure> figures)
+        {
+            StreamWriter strOut = new StreamWriter("figures.json");
+            DataContractSerializer serializer = new DataContractSerializer(typeof(List<Figure>));
+            serializer.WriteObject(strOut.BaseStream, figures);
+            strOut.Close();
+        }
+
+        public List<Figure> JsonDeserialization()
+        {
+            this.figureList.Clear();
+            StreamReader strIn = new StreamReader("figures.json");
+            DataContractSerializer deserializer = new DataContractSerializer(typeof(List<Figure>));
+            this.figureList = (List<Figure>)deserializer.ReadObject(strIn.BaseStream);
+            strIn.Close();
+            foreach (var i in this.figureList)
+            {
+                i.Beep += SystemSounds.Beep.Play;
+                i.NewClash += i.ClashFigure;
+                i.FiguresClash = new FiguresClash();
+            }
+
+            return this.figureList;
+        }
+
         private Circle ConstructCircle(XElement element)
         {
             this.x = Convert.ToInt32(element.Attribute("X").Value);
@@ -153,32 +189,5 @@
                 Convert.ToInt32(element.Attribute("ColorB").Value));
             return new Triangle(this.x, this.y, this.dx, this.dy, this.color, this.model, this.isMoveble);
         }
-
-
-        public void JsonSerializarion(List<Figure> figures)
-        {
-            StreamWriter strOut = new StreamWriter("figures.json");
-            DataContractSerializer serializer = new DataContractSerializer(typeof(List<Figure>));
-            serializer.WriteObject(strOut.BaseStream, figures);
-            strOut.Close();
-        }
-
-        public List<Figure> JsonDeserialization()
-        {
-            this.figureList.Clear();
-            StreamReader strIn = new StreamReader("figures.json");
-            DataContractSerializer deserializer = new DataContractSerializer(typeof(List<Figure>));
-            this.figureList = (List<Figure>)deserializer.ReadObject(strIn.BaseStream);
-            strIn.Close();
-            foreach (var i in this.figureList)
-            {
-                i.Beep += SystemSounds.Beep.Play;
-                i.NewClash += i.ClashFigure;
-                i.FiguresClash = new FiguresClash();
-            }
-            return this.figureList;
-        }
-
-        
     }
 }
