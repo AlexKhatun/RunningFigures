@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using RunningFigures.Properties;
-
-namespace RunningFigures
+﻿namespace RunningFigures
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Runtime.InteropServices;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Properties;
+
     public partial class MainForm : Form
     {
+        private readonly Serializer serializer;
+        private readonly List<Figure> figures;
         public MainForm()
         {
             Task.Factory.StartNew(this.Console1);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(Settings.Default.Language);
-            InitializeComponent();
-            timerRefresher.Start();
-            timerRefresher.Interval = 10;
-            figures = new List<Figure>();
-            serializer = new Serializer();
+            this.InitializeComponent();
+            this.timerRefresher.Start();
+            this.timerRefresher.Interval = 10;
+            this.figures = new List<Figure>();
+            this.serializer = new Serializer();
 
         }
 
@@ -49,25 +51,23 @@ namespace RunningFigures
                 FreeConsole();
             }
         }
-        private readonly Serializer serializer;
-        private readonly List<Figure> figures;
 
         private void SquareButton_Click(object sender, EventArgs e)
         {
             Square square = new Square();
-            AddFigure(square);
+            this.AddFigure(square);
         }
 
         private void TriangleButton_Click(object sender, EventArgs e)
         {
             Triangle triangle = new Triangle();
-            AddFigure(triangle);
+            this.AddFigure(triangle);
         }
 
         private void CircleButton_Click(object sender, EventArgs e)
         {
             Circle circle = new Circle();
-            AddFigure(circle);
+            this.AddFigure(circle);
         }
 
         private void timerRefresher_Tick(object sender, EventArgs e)
@@ -77,14 +77,14 @@ namespace RunningFigures
 
         private void DrawingArea_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var i in figures)
+            foreach (var i in this.figures)
             {
                 i.Draw(e.Graphics);
                 if (i.IsMoveble)
                 {
                     try
                     {
-                        i.Move(DrawingArea, figures);
+                        i.Move(this.DrawingArea, this.figures);
                     }
                     catch (FigureOutOfRangeException ex)
                     {
@@ -100,24 +100,25 @@ namespace RunningFigures
             int counter = 0;
             try
             {
-                foreach (var i in figures)
+                foreach (var i in this.figures)
                 {
                     if (FiguresListView.SelectedNode.Index == counter)
                     {
                         i.IsMoveble = !i.IsMoveble;
-                        StopButton.Text = ChangeLanguageStopButton(i.IsMoveble);
+                        this.StopButton.Text = this.ChangeLanguageStopButton(i.IsMoveble);
                         FiguresListView.SelectedNode.Text = i.GetType().ToString().Substring(15) + ' ' + i.IsMoveble;
                     }
                     counter++;
                 }
             }
-            catch (NullReferenceException) { }
+            catch (NullReferenceException) 
+            { }
         }
 
         private void FiguresListView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             int counter = 0;
-            foreach (var i in figures)
+            foreach (var i in this.figures)
             {
                 if (i.IsSelected)
                 {
@@ -133,7 +134,7 @@ namespace RunningFigures
                 }
                 if (FiguresListView.SelectedNode.Index == counter)
                 {
-                    StopButton.Text = ChangeLanguageStopButton(i.IsMoveble);
+                    this.StopButton.Text = this.ChangeLanguageStopButton(i.IsMoveble);
                     i.Select();
                 }
                 counter++;
@@ -142,7 +143,7 @@ namespace RunningFigures
 
         private string ChangeLanguageStopButton(bool isMove)
         {
-            string result = "";
+            string result = string.Empty;
             if (isMove && Settings.Default.Language == "ru")
             {
                 result = "Стоп";
@@ -178,54 +179,55 @@ namespace RunningFigures
 
         private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            serializer.XmlSerializarion(figures);
+            this.serializer.XmlSerializarion(this.figures);
         }
 
         private void xMLToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            foreach (var i in serializer.XmlDeserialization())
+            foreach (var i in this.serializer.XmlDeserialization())
             {
-                AddFigure(i);
+                this.AddFigure(i);
             }
         }
 
         private void binToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            serializer.BinarySerialization(figures);
+            this.serializer.BinarySerialization(this.figures);
         }
 
         private void binToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            foreach (var i in serializer.BinaryDeserialization())
+            foreach (var i in this.serializer.BinaryDeserialization())
             {
-                AddFigure(i);
+                this.AddFigure(i);
             }
         }
 
         private void jsonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            serializer.JsonSerializarion(figures);
+            this.serializer.JsonSerializarion(this.figures);
         }
 
         private void jsonToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            foreach (var i in serializer.JsonDeserialization())
+            foreach (var i in this.serializer.JsonDeserialization())
             {
-                AddFigure(i);
+                this.AddFigure(i);
             }
         }
 
         private void AddFigure(Figure figure)
         {
-            figures.Add(figure);
-            FiguresListView.Nodes.Add((FiguresListView.Nodes.Count).ToString(),
-            figure.GetType().ToString().Substring(15) + ' ' + figure.IsMoveble);
+            this.figures.Add(figure);
+            FiguresListView.Nodes.Add(
+                FiguresListView.Nodes.Count.ToString(),
+                figure.GetType().ToString().Substring(15) + ' ' + figure.IsMoveble);
         }
 
         private void PlusButton_Click(object sender, EventArgs e)
         {
             int counter = 0;
-            foreach (var i in figures)
+            foreach (var i in this.figures)
             {
                 if (FiguresListView.SelectedNode.Index == counter)
                 {
@@ -241,7 +243,7 @@ namespace RunningFigures
         private void MinusButton_Click(object sender, EventArgs e)
         {
             int counter = 0;
-            foreach (var i in figures)
+            foreach (var i in this.figures)
             {
                 if (FiguresListView.SelectedNode.Index == counter)
                 {

@@ -1,10 +1,30 @@
-﻿using System.ComponentModel;
-using System.Windows.Forms;
-
-namespace RunningFigures
+﻿namespace RunningFigures
 {
+    using System.ComponentModel;
+    using System.Windows.Forms;
     partial class MainForm
     {
+        private TreeView FiguresListView;
+        private Button SquareButton;
+        private Button TriangleButton;
+        private Button CircleButton;
+        private Button StopButton;
+        private Button EnButton;
+        private Button RuButton;
+        private PictureBox DrawingArea;
+        private Timer timerRefresher;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem serializeToolStripMenuItem;
+        private ToolStripMenuItem binToolStripMenuItem;
+        private ToolStripMenuItem xMLToolStripMenuItem;
+        private ToolStripMenuItem jsonToolStripMenuItem;
+        private ToolStripMenuItem deserializeToolStripMenuItem;
+        private ToolStripMenuItem binToolStripMenuItem1;
+        private ToolStripMenuItem xMLToolStripMenuItem1;
+        private ToolStripMenuItem jsonToolStripMenuItem1;
+        private Button PlusButton;
+        private Button MinusButton;
+        private TextBox BeepCountTextBox;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -16,9 +36,9 @@ namespace RunningFigures
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -271,27 +291,7 @@ namespace RunningFigures
 
         #endregion
 
-        private TreeView FiguresListView;
-        private Button SquareButton;
-        private Button TriangleButton;
-        private Button CircleButton;
-        private Button StopButton;
-        private Button EnButton;
-        private Button RuButton;
-        private PictureBox DrawingArea;
-        private Timer timerRefresher;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem serializeToolStripMenuItem;
-        private ToolStripMenuItem binToolStripMenuItem;
-        private ToolStripMenuItem xMLToolStripMenuItem;
-        private ToolStripMenuItem jsonToolStripMenuItem;
-        private ToolStripMenuItem deserializeToolStripMenuItem;
-        private ToolStripMenuItem binToolStripMenuItem1;
-        private ToolStripMenuItem xMLToolStripMenuItem1;
-        private ToolStripMenuItem jsonToolStripMenuItem1;
-        private Button PlusButton;
-        private Button MinusButton;
-        private TextBox BeepCountTextBox;
+        
     }
 }
 

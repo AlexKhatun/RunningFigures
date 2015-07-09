@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Media;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Linq;
-
-namespace RunningFigures
+﻿namespace RunningFigures
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Media;
+    using System.Runtime.Serialization;
+    using System.Runtime.Serialization.Formatters.Binary;
+    using System.Xml.Linq;
+
     public class Serializer
     {
-        public Serializer()
-        {
-            binaryFormatter = new BinaryFormatter();
-            figureList = new List<Figure>();
-        }
-
         private readonly BinaryFormatter binaryFormatter;
         private List<Figure> figureList;
         private XDocument doc;
@@ -28,31 +22,37 @@ namespace RunningFigures
         private int dy;
         private bool isMoveble;
 
+        public Serializer()
+        {
+            this.binaryFormatter = new BinaryFormatter();
+            this.figureList = new List<Figure>();
+        }
+
         public void BinarySerialization(List<Figure> figures)
         {
             using (FileStream fs = new FileStream("figures.dat", FileMode.OpenOrCreate))
             {
-                binaryFormatter.Serialize(fs, figures);
+                this.binaryFormatter.Serialize(fs, figures);
             }
         }
 
         public List<Figure> BinaryDeserialization()
         {
-            figureList.Clear();
+            this.figureList.Clear();
             using (FileStream fs = new FileStream("figures.dat", FileMode.OpenOrCreate))
             {
-                    figureList = (List<Figure>)binaryFormatter.Deserialize(fs);
+                    this.figureList = (List<Figure>)this.binaryFormatter.Deserialize(fs);
             }
-            //foreach (var i in figureList)
-            //{
-            //    i.Beep += SystemSounds.Beep.Play;
-            //}
-            return figureList;
+            foreach (var i in this.figureList)
+            {
+                i.Beep += SystemSounds.Beep.Play;
+            }
+            return this.figureList;
         }
 
         public void XmlSerializarion(List<Figure> figures)
         {
-            doc = new XDocument(new XElement("Figures"));
+            this.doc = new XDocument(new XElement("Figures"));
             foreach (var i in figures)
             {
                 var addingElement = new XElement("Figure");
@@ -68,87 +68,90 @@ namespace RunningFigures
                 addingElement.SetAttributeValue("ColorB", i.Color.B);
                 addingElement.SetAttributeValue("ColorG", i.Color.G);
                 addingElement.SetAttributeValue("ColorR", i.Color.R);
-                doc.Root.Add(addingElement);
+                this.doc.Root.Add(addingElement);
             }
-            doc.Save("figures.xml");
+            this.doc.Save("figures.xml");
         }
 
         public List<Figure> XmlDeserialization()
         {
-            figureList.Clear();
+            this.figureList.Clear();
             XDocument doc = XDocument.Load("figures.xml");
             foreach (XElement element in doc.Root.Elements())
             {
                 switch (element.Attribute("Name").Value)
                 {
                     case "RunningFigures.Circle":
-                        figureList.Add(ConstructCircle(element));
+                        this.figureList.Add(this.ConstructCircle(element));
                         break;
                     case "RunningFigures.Square":
-                        figureList.Add(ConstructSquare(element));
+                        this.figureList.Add(this.ConstructSquare(element));
                         break;
                     case "RunningFigures.Triangle":
-                        figureList.Add(ConstructTriangle(element));
+                        this.figureList.Add(this.ConstructTriangle(element));
                         break;
                 }
             }
-            return figureList;
+            return tthis.figureList;
         }
         private Circle ConstructCircle(XElement element)
         {
-            x = Convert.ToInt32(element.Attribute("X").Value);
-            y = Convert.ToInt32(element.Attribute("Y").Value);
-            dx = Convert.ToInt32(element.Attribute("Dx").Value);
-            dy = Convert.ToInt32(element.Attribute("Dy").Value);
-            isMoveble = Convert.ToBoolean(element.Attribute("IsMoveble").Value);
-            model = new Rectangle(Convert.ToInt32(element.Attribute("X").Value),
-                     Convert.ToInt32(element.Attribute("Y").Value),
-                     Convert.ToInt32(element.Attribute("ModelWidth").Value),
-                     Convert.ToInt32(element.Attribute("ModelHeight").Value)
-                     );
-            color = Color.FromArgb(Convert.ToInt32(element.Attribute("ColorA").Value),
+            this.x = Convert.ToInt32(element.Attribute("X").Value);
+            this.y = Convert.ToInt32(element.Attribute("Y").Value);
+            this.dx = Convert.ToInt32(element.Attribute("Dx").Value);
+            this.dy = Convert.ToInt32(element.Attribute("Dy").Value);
+            this.isMoveble = Convert.ToBoolean(element.Attribute("IsMoveble").Value);
+            this.model = new Rectangle(
+                Convert.ToInt32(element.Attribute("X").Value),
+                Convert.ToInt32(element.Attribute("Y").Value),
+                Convert.ToInt32(element.Attribute("ModelWidth").Value),
+                Convert.ToInt32(element.Attribute("ModelHeight").Value));
+            this.color = Color.FromArgb(
+                Convert.ToInt32(element.Attribute("ColorA").Value),
                 Convert.ToInt32(element.Attribute("ColorR").Value),
                 Convert.ToInt32(element.Attribute("ColorG").Value),
                 Convert.ToInt32(element.Attribute("ColorB").Value));
-            return new Circle(x, y, dx, dy, color, model, isMoveble);
+            return new Circle(this.x, this.y, this.dx, this.dy, this.color, this.model, this.isMoveble);
         }
 
         private Square ConstructSquare(XElement element)
         {
-            x = Convert.ToInt32(element.Attribute("X").Value);
-            y = Convert.ToInt32(element.Attribute("Y").Value);
-            dx = Convert.ToInt32(element.Attribute("Dx").Value);
-            dy = Convert.ToInt32(element.Attribute("Dy").Value);
-            isMoveble = Convert.ToBoolean(element.Attribute("IsMoveble").Value);
-            model = new Rectangle(Convert.ToInt32(element.Attribute("X").Value),
-                     Convert.ToInt32(element.Attribute("Y").Value),
-                     Convert.ToInt32(element.Attribute("ModelWidth").Value),
-                     Convert.ToInt32(element.Attribute("ModelHeight").Value)
-                     );
-            color = Color.FromArgb(Convert.ToInt32(element.Attribute("ColorA").Value),
+            this.x = Convert.ToInt32(element.Attribute("X").Value);
+            this.y = Convert.ToInt32(element.Attribute("Y").Value);
+            this.dx = Convert.ToInt32(element.Attribute("Dx").Value);
+            this.dy = Convert.ToInt32(element.Attribute("Dy").Value);
+            this.isMoveble = Convert.ToBoolean(element.Attribute("IsMoveble").Value);
+            this.model = new Rectangle(
+                Convert.ToInt32(element.Attribute("X").Value),
+                Convert.ToInt32(element.Attribute("Y").Value),
+                Convert.ToInt32(element.Attribute("ModelWidth").Value),
+                Convert.ToInt32(element.Attribute("ModelHeight").Value));
+            this.color = Color.FromArgb(
+                Convert.ToInt32(element.Attribute("ColorA").Value),
                 Convert.ToInt32(element.Attribute("ColorR").Value),
                 Convert.ToInt32(element.Attribute("ColorG").Value),
                 Convert.ToInt32(element.Attribute("ColorB").Value));
-            return new Square(x, y, dx, dy, color, model, isMoveble);
+            return new Square(this.x, this.y, this.dx, this.dy, this.color, this.model, this.isMoveble);
         }
 
         private Triangle ConstructTriangle(XElement element)
         {
-            x = Convert.ToInt32(element.Attribute("X").Value);
-            y = Convert.ToInt32(element.Attribute("Y").Value);
-            dx = Convert.ToInt32(element.Attribute("Dx").Value);
-            dy = Convert.ToInt32(element.Attribute("Dy").Value);
-            isMoveble = Convert.ToBoolean(element.Attribute("IsMoveble").Value);
-            model = new Rectangle(Convert.ToInt32(element.Attribute("X").Value),
-                     Convert.ToInt32(element.Attribute("Y").Value),
-                     Convert.ToInt32(element.Attribute("ModelWidth").Value),
-                     Convert.ToInt32(element.Attribute("ModelHeight").Value)
-                     );
-            color = Color.FromArgb(Convert.ToInt32(element.Attribute("ColorA").Value),
+            this.x = Convert.ToInt32(element.Attribute("X").Value);
+            this.y = Convert.ToInt32(element.Attribute("Y").Value);
+            this.dx = Convert.ToInt32(element.Attribute("Dx").Value);
+            this.dy = Convert.ToInt32(element.Attribute("Dy").Value);
+            this.isMoveble = Convert.ToBoolean(element.Attribute("IsMoveble").Value);
+            this.model = new Rectangle(
+                Convert.ToInt32(element.Attribute("X").Value),
+                Convert.ToInt32(element.Attribute("Y").Value),
+                Convert.ToInt32(element.Attribute("ModelWidth").Value),
+                Convert.ToInt32(element.Attribute("ModelHeight").Value));
+            this.color = Color.FromArgb(
+                Convert.ToInt32(element.Attribute("ColorA").Value),
                 Convert.ToInt32(element.Attribute("ColorR").Value),
                 Convert.ToInt32(element.Attribute("ColorG").Value),
                 Convert.ToInt32(element.Attribute("ColorB").Value));
-            return new Triangle(x, y, dx, dy, color, model, isMoveble);
+            return new Triangle(this.x, this.y, this.dx, this.dy, this.color, this.model, this.isMoveble);
         }
 
 
@@ -162,18 +165,18 @@ namespace RunningFigures
 
         public List<Figure> JsonDeserialization()
         {
-            figureList.Clear();
+            this.figureList.Clear();
             StreamReader strIn = new StreamReader("figures.json");
             DataContractSerializer deserializer = new DataContractSerializer(typeof(List<Figure>));
-            figureList = (List<Figure>)deserializer.ReadObject(strIn.BaseStream);
+            this.figureList = (List<Figure>)deserializer.ReadObject(strIn.BaseStream);
             strIn.Close();
-            foreach (var i in figureList)
+            foreach (var i in this.figureList)
             {
                 i.Beep += SystemSounds.Beep.Play;
                 i.NewClash += i.ClashFigure;
                 i.FiguresClash = new FiguresClash();
             }
-            return figureList;
+            return this.figureList;
         }
 
         

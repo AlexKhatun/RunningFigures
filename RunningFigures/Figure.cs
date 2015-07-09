@@ -1,16 +1,13 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Media;
-using System.Runtime.Serialization;
-using System.Windows.Forms;
-
-namespace RunningFigures
+﻿namespace RunningFigures
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Media;
+    using System.Runtime.Serialization;
+    using System.Windows.Forms;
 
     public delegate void BeepDelegate();
-
 
     [Serializable]
     [DataContract]
@@ -19,18 +16,34 @@ namespace RunningFigures
     [KnownType(typeof(Square))]
     public abstract class Figure
     {
+        
+
+        protected Color color;
+
+        [DataMember]
+        protected Random Rand;
+
+        public Rectangle Model;
+
+        public FiguresClash FiguresClash = new FiguresClash();
+
+        public event EventHandler<FiguresClashEventArgs> NewClash;
+
+        [NonSerialized] 
+        public BeepDelegate Beep;
+
         protected Figure()
         {
-            Rand = new Random();
-            X = Rand.Next(50, 440);
-            Y = Rand.Next(50, 150);
-            Dx = Rand.Next(-5, 5);
-            Dy = Rand.Next(-5, 5);
-            color = Color.FromArgb(Rand.Next(128, 255), Rand.Next(128, 255), Rand.Next(128, 255), Rand.Next(128, 255));
-            IsMoveble = true;
-            IsSelected = false;
-            NewClash += ClashFigure;
-            Beep += SystemSounds.Beep.Play;
+            this.Rand = new Random();
+            this.X = this.Rand.Next(50, 440);
+            this.Y = this.Rand.Next(50, 150);
+            this.Dx = this.Rand.Next(-5, 5);
+            this.Dy = this.Rand.Next(-5, 5);
+            this.color = Color.FromArgb(this.Rand.Next(128, 255), this.Rand.Next(128, 255), this.Rand.Next(128, 255), this.Rand.Next(128, 255));
+            this.IsMoveble = true;
+            this.IsSelected = false;
+            this.NewClash += this.ClashFigure;
+            this.Beep += SystemSounds.Beep.Play;
         }
 
         protected Figure(int x, int y, int dx, int dy, Color color, Rectangle model, bool isMove)
@@ -43,21 +56,20 @@ namespace RunningFigures
             this.Model = model;
             this.IsMoveble = isMove;
             this.IsSelected = false;
-            Rand = new Random();
-            NewClash += ClashFigure;
-            Beep += SystemSounds.Beep.Play;
+            this.Rand = new Random();
+            this.NewClash += this.ClashFigure;
+            this.Beep += SystemSounds.Beep.Play;
         }
-
         [DataMember]
         public int X
         {
             get
             {
-                return Model.X; 
+                return this.Model.X;
             }
             set
             {
-                Model.X = value;
+                this.Model.X = value;
             }
         }
 
@@ -66,11 +78,11 @@ namespace RunningFigures
         {
             get
             {
-                return Model.Y;
+                return this.Model.Y;
             }
             set
             {
-                Model.Y = value;
+                this.Model.Y = value;
             }
         }
         [DataMember]
@@ -78,11 +90,11 @@ namespace RunningFigures
         {
             get
             {
-                return Model.Width;
+                return this.Model.Width;
             }
             protected set
             {
-                Model.Width = value;
+                this.Model.Width = value;
             }
         }
         [DataMember]
@@ -90,11 +102,11 @@ namespace RunningFigures
         {
             get
             {
-                return Model.Height;
+                return this.Model.Height;
             }
             protected set
             {
-                Model.Height = value;
+                this.Model.Height = value;
             }
         }
 
@@ -103,8 +115,6 @@ namespace RunningFigures
 
         [DataMember]
         public int Dy { get; set; }
-
-        protected Color color;
 
         [DataMember]
         public Color Color
@@ -118,30 +128,20 @@ namespace RunningFigures
                 this.color = value;
             }
         }
-        [DataMember]
-        protected Random Rand;
 
-        public Rectangle Model;
         [DataMember]
         public bool IsSelected { get; private set; }
         [DataMember]
         public bool IsMoveble { get; set; }
 
-        public FiguresClash FiguresClash = new FiguresClash();
-
-        public event EventHandler<FiguresClashEventArgs> NewClash;
-
-        [NonSerialized] 
-        public BeepDelegate Beep;
-
         public void AddBeep()
         {
-            Beep += SystemSounds.Beep.Play;
+            this.Beep += SystemSounds.Beep.Play;
         }
 
         public void RemoveBeep()
         {
-            Beep -= SystemSounds.Beep.Play;
+            this.Beep -= SystemSounds.Beep.Play;
         }
 
         public void FiguresClashed(Figure enemy, Point p)
@@ -152,34 +152,34 @@ namespace RunningFigures
 
         public virtual void Move(PictureBox drawingArea, List<Figure> figures)
         {
-            if (this.X + Model.Width <= 0 || this.X >= drawingArea.Size.Width || this.Y + Model.Height <= 0 ||
+            if (this.X + this.Model.Width <= 0 || this.X >= drawingArea.Size.Width || this.Y + this.Model.Height <= 0 ||
                 this.Y >= drawingArea.Size.Height)
             {
                throw new FigureOutOfRangeException("Фигура потерялась!");
             }
-            if (Model.X + Model.Width >= drawingArea.Size.Width || Model.X <= 0)
+            if (this.Model.X + this.Model.Width >= drawingArea.Size.Width || this.Model.X <= 0)
             {
-                Dx = -Dx;
+                this.Dx = -this.Dx;
             }
-            else if (Model.Y + Model.Height >= drawingArea.Size.Height || Model.Y <= 0)
+            else if (this.Model.Y + this.Model.Height >= drawingArea.Size.Height || this.Model.Y <= 0)
             {
-                Dy = -Dy;
+                this.Dy = -this.Dy;
             }
-            X += Dx;
-            Y += Dy;
+            this.X += this.Dx;
+            this.Y += this.Dy;
         }
 
         public abstract void Draw(Graphics graphics);
 
         public void Select()
         {
-            IsSelected = !IsSelected;
-            color = IsSelected ? Color.BlueViolet : Color.FromArgb(Rand.Next(255), Rand.Next(255), Rand.Next(255), Rand.Next(255));
+            this.IsSelected = !this.IsSelected;
+            this.color = this.IsSelected ? Color.BlueViolet : Color.FromArgb(this.Rand.Next(255), this.Rand.Next(255), this.Rand.Next(255), this.Rand.Next(255));
         }
 
         public bool IntersectWith(Figure figure)
         {
-            bool flag = Model.IntersectsWith(figure.Model);
+            bool flag = this.Model.IntersectsWith(figure.Model);
             return flag;
         }
 
@@ -197,7 +197,7 @@ namespace RunningFigures
             Console.WriteLine(e.Figure1.GetType().ToString().Substring(15) + ' ' + e.Figure2.GetType().ToString().Substring(15) + ' ' + e.Point.X + ' ' + e.Point.Y);
             try
             {
-                Beep();
+                this.Beep();
             }
             catch (NullReferenceException ex)
             {

@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Media;
-using System.Windows.Forms;
-
-namespace RunningFigures
+﻿namespace RunningFigures
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Windows.Forms;
+
     [Serializable]
     public class Circle : Figure
     {
 
         public Circle()
         {
-            Model = new Rectangle(this.X, this.Y, Rand.Next(20,70), 0);
-            Model.Height = Model.Width;
+            this.Model = new Rectangle(this.X, this.Y, Rand.Next(20, 70), 0);
+            this.Model.Height = this.Model.Width;
         }
 
         public Circle(int x, int y, int dx, int dy, Color color, Rectangle model, bool isMove)
@@ -23,7 +22,7 @@ namespace RunningFigures
         {
             foreach (var i in figures)
             {
-                if (this != i && IntersectWith(i))
+                if (this != i && this.IntersectWith(i))
                 {
                     FiguresClash.FigureClash(this, i);
                 }
@@ -34,7 +33,7 @@ namespace RunningFigures
 
         public override void Draw(Graphics graphics)
         {
-            graphics.FillEllipse(new SolidBrush(color), Model);
+            graphics.FillEllipse(new SolidBrush(color), this.Model);
         }
     }
 }

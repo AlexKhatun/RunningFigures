@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace RunningFigures
+{
+    using System;
+    using System.Drawing;
 
-namespace RunningFigures
-{   [Serializable]
+    [Serializable]
     public class FiguresClash
     {
         public void FigureClash(Figure figure1, Figure figure2)

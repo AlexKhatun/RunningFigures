@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace RunningFigures
+﻿namespace RunningFigures
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Windows.Forms;
+
     [Serializable]
     public class Triangle : Figure
     {
         public Triangle()
         {
-            Model = new Rectangle(this.X, this.Y, Rand.Next(20, 70), Rand.Next(20,70));
+            this.Model = new Rectangle(this.X, this.Y, Rand.Next(20, 70), Rand.Next(20, 70));
         }
 
         public Triangle(int x, int y, int dx, int dy, Color color, Rectangle model, bool isMove)
@@ -20,7 +20,7 @@ namespace RunningFigures
         {
             foreach (var i in figures)
             {
-                if (this != i && IntersectWith(i))
+                if (this != i && this.IntersectWith(i))
                 {
                     FiguresClash.FigureClash(this, i);
                 }
@@ -30,7 +30,7 @@ namespace RunningFigures
 
         public override void Draw(Graphics graphics)
         {
-            graphics.FillPolygon(new SolidBrush(color), new Point[] {new Point(Model.X + Model.Width/2, Model.Y), new Point(Model.X, Model.Y + Model.Height),new Point(Model.X + Model.Width, Model.Y + Model.Height)  });
+            graphics.FillPolygon(new SolidBrush(color), new Point[] { new Point(Model.X + Model.Width / 2, Model.Y), new Point(Model.X, Model.Y + Model.Height), new Point(Model.X + Model.Width, Model.Y + Model.Height) });
         }
     }
 }
