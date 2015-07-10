@@ -34,6 +34,11 @@
         {
         }
 
+        /// <summary>
+        /// Move all Figures with base call and clashing
+        /// </summary>
+        /// <param name="drawingArea">Picture Box</param>
+        /// <param name="figures">All Figure list</param>
         public override void Move(PictureBox drawingArea, List<Figure> figures)
         {
             foreach (var i in figures)
@@ -47,6 +52,10 @@
             base.Move(drawingArea, figures);
         }
 
+        /// <summary>
+        /// Draw Triangle
+        /// </summary>
+        /// <param name="graphics">PictureBox's graphics element</param>
         public override void Draw(Graphics graphics)
         {
             graphics.FillPolygon(new SolidBrush(Color), new Point[] { new Point(Model.X + (Model.Width / 2), Model.Y), new Point(Model.X, Model.Y + Model.Height), new Point(Model.X + Model.Width, Model.Y + Model.Height) });

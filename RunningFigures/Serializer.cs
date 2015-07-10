@@ -34,6 +34,10 @@
             this.figureList = new List<Figure>();
         }
 
+        /// <summary>
+        /// Bin serialization Figure list
+        /// </summary>
+        /// <param name="figures">list Figure</param>
         public void BinarySerialization(List<Figure> figures)
         {
             using (FileStream fs = new FileStream("figures.dat", FileMode.OpenOrCreate))
@@ -42,6 +46,10 @@
             }
         }
 
+        /// <summary>
+        /// Bin deserialization file to Figure list
+        /// </summary>
+        /// <returns>list Figure</returns>
         public List<Figure> BinaryDeserialization()
         {
             this.figureList.Clear();
@@ -58,6 +66,10 @@
             return this.figureList;
         }
 
+        /// <summary>
+        /// XML serialization Figure list
+        /// </summary>
+        /// <param name="figures">list Figure</param>
         public void XmlSerializarion(List<Figure> figures)
         {
             this.doc = new XDocument(new XElement("Figures"));
@@ -82,6 +94,10 @@
             this.doc.Save("figures.xml");
         }
 
+        /// <summary>
+        /// XML deserialization file to Figure list
+        /// </summary>
+        /// <returns>list Figure</returns>
         public List<Figure> XmlDeserialization()
         {
             this.figureList.Clear();
@@ -105,6 +121,10 @@
             return this.figureList;
         }
 
+        /// <summary>
+        /// JS serialization Figure list
+        /// </summary>
+        /// <param name="figures">list Figure</param>
         public void JsonSerializarion(List<Figure> figures)
         {
             StreamWriter strOut = new StreamWriter("figures.json");
@@ -113,6 +133,10 @@
             strOut.Close();
         }
 
+        /// <summary>
+        /// XML deserialization file to Figure list
+        /// </summary>
+        /// <returns>list Figure</returns>
         public List<Figure> JsonDeserialization()
         {
             this.figureList.Clear();
@@ -130,6 +154,11 @@
             return this.figureList;
         }
 
+        /// <summary>
+        /// Construct circle after XML deserialization fields
+        /// </summary>
+        /// <param name="element">Element from XML document</param>
+        /// <returns>Constructed circle</returns>
         private Circle ConstructCircle(XElement element)
         {
             this.x = Convert.ToInt32(element.Attribute("X").Value);
@@ -150,6 +179,11 @@
             return new Circle(this.x, this.y, this.dx, this.dy, this.color, this.model, this.isMoveble);
         }
 
+        /// <summary>
+        /// Construct square after XML deserialization fields
+        /// </summary>
+        /// <param name="element">Element from XML document</param>
+        /// <returns>Constructed square</returns>
         private Square ConstructSquare(XElement element)
         {
             this.x = Convert.ToInt32(element.Attribute("X").Value);
@@ -170,6 +204,11 @@
             return new Square(this.x, this.y, this.dx, this.dy, this.color, this.model, this.isMoveble);
         }
 
+        /// <summary>
+        /// Construct triangle after XML deserialization fields
+        /// </summary>
+        /// <param name="element">Element from XML document</param>
+        /// <returns>Constructed triangle</returns>
         private Triangle ConstructTriangle(XElement element)
         {
             this.x = Convert.ToInt32(element.Attribute("X").Value);

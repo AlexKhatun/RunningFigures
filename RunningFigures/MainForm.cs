@@ -9,9 +9,19 @@
     using System.Windows.Forms;
     using Properties;
 
+    /// <summary>
+    /// App Main Form
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Serializer object
+        /// </summary>
         private readonly Serializer serializer;
+
+        /// <summary>
+        /// Figure list, which have all Figure on form
+        /// </summary>
         private readonly List<Figure> figures;
 
         /// <summary>
@@ -19,7 +29,7 @@
         /// </summary>
         public MainForm()
         {
-            Task.Factory.StartNew(this.Console1);
+            Task.Factory.StartNew(this.CallConsole);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
             Thread.CurrentThread.CurrentCulture = new CultureInfo(Settings.Default.Language);
             this.InitializeComponent();
@@ -37,7 +47,10 @@
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool FreeConsole();
 
-        private void Console1()
+        /// <summary>
+        /// Call console
+        /// </summary>
+        private void CallConsole()
         {
             if (AllocConsole())
             {
@@ -55,24 +68,44 @@
             }
         }
 
+        /// <summary>
+        /// Create square
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void SquareButton_Click(object sender, EventArgs e)
         {
             Square square = new Square();
             this.AddFigure(square);
         }
 
+        /// <summary>
+        /// Create triangle
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void TriangleButton_Click(object sender, EventArgs e)
         {
             Triangle triangle = new Triangle();
             this.AddFigure(triangle);
         }
 
+        /// <summary>
+        /// Create circle
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void CircleButton_Click(object sender, EventArgs e)
         {
             Circle circle = new Circle();
             this.AddFigure(circle);
         }
 
+        /// <summary>
+        /// Fill drawing area
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void DrawingArea_Paint(object sender, PaintEventArgs e)
         {
             foreach (var i in this.figures)
@@ -93,6 +126,11 @@
             }
         }
 
+        /// <summary>
+        /// Stop selected Figure
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void StopButton_Click(object sender, EventArgs e)
         {
             int counter = 0;
@@ -115,6 +153,11 @@
             }
         }
 
+        /// <summary>
+        /// Select Figure
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void FiguresListView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             int counter = 0;
@@ -143,6 +186,11 @@
             }
         }
 
+        /// <summary>
+        /// Change Language on Stop Button
+        /// </summary>
+        /// <param name="isMove">If selected figure move?</param>
+        /// <returns>Text on Button</returns>
         private string ChangeLanguageStopButton(bool isMove)
         {
             string result = string.Empty;
@@ -169,6 +217,11 @@
             return result;
         }
 
+        /// <summary>
+        /// Change language to English. Be careful, it reload Form
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void EnButton_Click(object sender, EventArgs e)
         {
             Settings.Default.Language = "en";
@@ -176,6 +229,11 @@
             Application.Restart();
         }
 
+        /// <summary>
+        /// Change language to Russian. Be careful, it reload Form
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void RuButton_Click(object sender, EventArgs e)
         {
             Settings.Default.Language = "ru";
@@ -183,6 +241,10 @@
             Application.Restart();
         }
 
+        /// <summary>
+        /// Add figure to Figure list
+        /// </summary>
+        /// <param name="figure">Adding Figure</param>
         private void AddFigure(Figure figure)
         {
             this.figures.Add(figure);
@@ -191,6 +253,11 @@
                 figure.GetType().ToString().Substring(15) + ' ' + figure.IsMoveble);
         }
 
+        /// <summary>
+        /// Add Beep to Figure
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void PlusButton_Click(object sender, EventArgs e)
         {
             int counter = 0;
@@ -207,6 +274,11 @@
             }
         }
 
+        /// <summary>
+        /// Remove Beep from Figure
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void MinusButton_Click(object sender, EventArgs e)
         {
             int counter = 0;
@@ -231,21 +303,41 @@
             }
         }
 
+        /// <summary>
+        /// Bin serialization all figures on Area
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void BinToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.serializer.BinarySerialization(this.figures);
         }
 
+        /// <summary>
+        /// XML serialization all figures on Area
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void XmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.serializer.XmlSerializarion(this.figures);
         }
 
+        /// <summary>
+        /// JS serialization all figures on Area
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void JsonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.serializer.JsonSerializarion(this.figures);
         }
 
+        /// <summary>
+        /// JS deserialization all figures on Area
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void JsonDesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             foreach (var i in this.serializer.JsonDeserialization())
@@ -254,6 +346,11 @@
             }
         }
 
+        /// <summary>
+        /// XML deserialization all figures on Area
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void XmlDesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             foreach (var i in this.serializer.XmlDeserialization())
@@ -262,6 +359,11 @@
             }
         }
 
+        /// <summary>
+        /// Bin deserialization all figures on Area
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void BinDesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             foreach (var i in this.serializer.BinaryDeserialization())
@@ -270,6 +372,11 @@
             }
         }
 
+        /// <summary>
+        /// Refresh area by timer tick
+        /// </summary>
+        /// <param name="sender">Event caller</param>
+        /// <param name="e">Click event</param>
         private void TimerRefresher_Tick(object sender, EventArgs e)
         {
             this.drawingArea.Refresh();

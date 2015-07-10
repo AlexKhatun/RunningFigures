@@ -35,6 +35,11 @@
         {
         }
 
+        /// <summary>
+        /// Move all Figures with base call and clashing
+        /// </summary>
+        /// <param name="drawingArea">Picture Box</param>
+        /// <param name="figures">All Figure list</param>
         public override void Move(PictureBox drawingArea, List<Figure> figures)
         {
             foreach (var i in figures)
@@ -48,6 +53,10 @@
             base.Move(drawingArea, figures);
         }
 
+        /// <summary>
+        /// Draw Square
+        /// </summary>
+        /// <param name="graphics">PictureBox's graphics element</param>
         public override void Draw(Graphics graphics)
         {
             graphics.FillRectangle(new SolidBrush(Color), this.Model);

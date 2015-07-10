@@ -5,8 +5,12 @@
     /// <summary>
     /// Exception, for Figure. Calling when figure go away from board
     /// </summary>
+    [Serializable]
     public class FigureOutOfRangeException : Exception
     {
+        /// <summary>
+        /// Exception name
+        /// </summary>
         private string name = string.Empty;
 
         /// <summary>
@@ -58,6 +62,9 @@
         {
         }
 
+        /// <summary>
+        /// Gets or sets overriding Exception message?
+        /// </summary>
         public override string Message
         {
             get { return this.Message; }

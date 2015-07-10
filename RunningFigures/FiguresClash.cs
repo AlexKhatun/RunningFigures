@@ -9,6 +9,11 @@
     [Serializable]
     public class FiguresClash
     {
+        /// <summary>
+        /// Figures change direction on clash
+        /// </summary>
+        /// <param name="figure1">First Figure</param>
+        /// <param name="figure2">Second Figure</param>
         public void FigureClash(Figure figure1, Figure figure2)
         {
             figure1.Dx = -figure1.Dx;

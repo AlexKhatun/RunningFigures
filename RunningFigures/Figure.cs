@@ -96,6 +96,9 @@
         /// </summary>
         public event EventHandler<FiguresClashEventArgs> NewClash;
 
+        /// <summary>
+        /// Gets or sets the X coordinate of Figure
+        /// </summary>
         [DataMember]
         public int X
         {
@@ -110,6 +113,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the Y coordinate of Figure
+        /// </summary>
         [DataMember]
         public int Y
         {
@@ -124,6 +130,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the width of Figure
+        /// </summary>
         [DataMember]
         public int Width
         {
@@ -138,6 +147,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the height of Figure
+        /// </summary>
         [DataMember]
         public int Height
         {
@@ -152,12 +164,21 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the X speed of Figure
+        /// </summary>
         [DataMember]
         public int Dx { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Y speed of Figure
+        /// </summary>
         [DataMember]
         public int Dy { get; set; }
 
+        /// <summary>
+        /// Gets or sets the color of Figure
+        /// </summary>
         [DataMember]
         public Color Color
         {
@@ -172,11 +193,21 @@
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether Figure selected or no
+        /// </summary>
         [DataMember]
         public bool IsSelected { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether moving figure
+        /// </summary>
         [DataMember]
         public bool IsMoveble { get; set; }
 
+        /// <summary>
+        /// Gets or sets rand field
+        /// </summary>
         protected Random Rand
         {
             get
@@ -190,22 +221,38 @@
             }
         }
 
+        /// <summary>
+        /// Add beep to Figure clash event
+        /// </summary>
         public void AddBeep()
         {
             this.Beep += SystemSounds.Beep.Play;
         }
 
+        /// <summary>
+        /// Remove beep from Figure clash event
+        /// </summary>
         public void RemoveBeep()
         {
             this.Beep -= SystemSounds.Beep.Play;
         }
 
+        /// <summary>
+        /// Clash Figure event call
+        /// </summary>
+        /// <param name="enemy">Second Figure</param>
+        /// <param name="p">Clash Point</param>
         public void FiguresClashed(Figure enemy, Point p)
         {
             FiguresClashEventArgs e = new FiguresClashEventArgs(this, enemy, p);
             this.OnNewClash(e);
         }
 
+        /// <summary>
+        /// Move all Figures with Exception, can't go from area
+        /// </summary>
+        /// <param name="drawingArea">Picture Box</param>
+        /// <param name="figures">All Figure list</param>
         public virtual void Move(PictureBox drawingArea, List<Figure> figures)
         {
             if (this.X + this.Model.Width <= 0 || this.X >= drawingArea.Size.Width || this.Y + this.Model.Height <= 0 ||
@@ -227,20 +274,37 @@
             this.Y += this.Dy;
         }
 
+        /// <summary>
+        /// Draw Figure
+        /// </summary>
+        /// <param name="graphics">PictureBox's graphics element</param>
         public abstract void Draw(Graphics graphics);
 
+        /// <summary>
+        /// Select this Figure
+        /// </summary>
         public void Select()
         {
             this.IsSelected = !this.IsSelected;
             this.color = this.IsSelected ? Color.BlueViolet : Color.FromArgb(this.Rand.Next(255), this.Rand.Next(255), this.Rand.Next(255), this.Rand.Next(255));
         }
 
+        /// <summary>
+        /// Intersect with another Figure
+        /// </summary>
+        /// <param name="figure">Second Figure</param>
+        /// <returns>Is this Figure intersect with parameter</returns>
         public bool IntersectWith(Figure figure)
         {
             bool flag = this.Model.IntersectsWith(figure.Model);
             return flag;
         }
 
+        /// <summary>
+        /// Clashing event Call, figures change direction
+        /// </summary>
+        /// <param name="sender">Call event parameter</param>
+        /// <param name="e">Clash event</param>
         public void ClashFigure(object sender, FiguresClashEventArgs e)
         {
             Console.WriteLine(e.Figure1.GetType().ToString().Substring(15) + ' ' + e.Figure2.GetType().ToString().Substring(15) + ' ' + e.Point.X + ' ' + e.Point.Y);
@@ -254,6 +318,10 @@
             }
         }
 
+        /// <summary>
+        /// Call clash event
+        /// </summary>
+        /// <param name="e">Clash event</param>
         protected virtual void OnNewClash(FiguresClashEventArgs e)
         {
             EventHandler<FiguresClashEventArgs> temp = this.NewClash;

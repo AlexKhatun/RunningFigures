@@ -9,7 +9,14 @@
     [Serializable]
     public class FiguresClashEventArgs : EventArgs
     {
+        /// <summary>
+        /// 2 Clashed Figure
+        /// </summary>
         private readonly Figure figure1, figure2;
+
+        /// <summary>
+        /// Clash Point
+        /// </summary>
         private readonly Point clashPoint;
 
         /// <summary>
@@ -25,6 +32,9 @@
             this.clashPoint = point;
         }
 
+        /// <summary>
+        /// Gets first Figure
+        /// </summary>
         public Figure Figure1 
         { 
             get 
@@ -33,6 +43,9 @@
             } 
         }
 
+        /// <summary>
+        /// Gets second Figure
+        /// </summary>
         public Figure Figure2
         { 
             get 
@@ -41,6 +54,9 @@
             } 
         }
 
+        /// <summary>
+        /// Gets clashing Point
+        /// </summary>
         public Point Point 
         { 
             get 

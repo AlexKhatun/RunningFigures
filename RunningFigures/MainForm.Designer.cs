@@ -3,6 +3,9 @@
     using System.ComponentModel;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// Main Form Designer
+    /// </summary>
     public partial class MainForm
     {
         private TreeView figuresListView;
