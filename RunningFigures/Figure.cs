@@ -6,6 +6,7 @@
     using System.Media;
     using System.Runtime.Serialization;
     using System.Windows.Forms;
+    using Properties;
 
     /// <summary>
     /// Delegate, which counted Beeps on Figure Clashing
@@ -312,7 +313,7 @@
             {
                 this.Beep();
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 Console.WriteLine("Для этой фигуры нет бипов!");
             }

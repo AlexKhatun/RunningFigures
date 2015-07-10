@@ -126,7 +126,7 @@
                     {
                         i.Move(this.drawingArea, this.figures);
                     }
-                    catch (FigureOutOfRangeException ex)
+                    catch (FigureOutOfRangeException)
                     {
                         i.X = 50;
                         i.Y = 50;
@@ -151,7 +151,7 @@
                     {
                         i.IsMoveble = !i.IsMoveble;
                         this.stopButton.Text = this.ChangeLanguageStopButton(i.IsMoveble);
-                        this.figuresListView.SelectedNode.Text = i.GetType().ToString().Substring(15) + ' ' + i.IsMoveble;
+                        this.figuresListView.SelectedNode.Text = i.ToString() + ' ' + i.IsMoveble;
                     }
 
                     counter++;
@@ -179,7 +179,7 @@
                     {
                         this.beepCountTextBox.Text = i.Beep.GetInvocationList().GetLength(0).ToString();
                     }
-                    catch (NullReferenceException ex)
+                    catch (NullReferenceException)
                     {
                         this.beepCountTextBox.Text = "0";
                     }
@@ -259,7 +259,7 @@
             this.figures.Add(figure);
             this.figuresListView.Nodes.Add(
                 this.figuresListView.Nodes.Count.ToString(),
-                figure.GetType().ToString().Substring(15) + ' ' + figure.IsMoveble);
+                figure.ToString() + ' ' + figure.IsMoveble);
         }
 
         /// <summary>
@@ -300,7 +300,7 @@
                     {
                         this.beepCountTextBox.Text = i.Beep.GetInvocationList().GetLength(0).ToString();
                     }
-                    catch (NullReferenceException ex)
+                    catch (NullReferenceException)
                     {
                         this.beepCountTextBox.Text = "0";
                     }

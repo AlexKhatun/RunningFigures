@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
+    using Properties;
 
     /// <summary>
     /// Class for square, describing by rectangle
@@ -60,6 +61,16 @@
         public override void Draw(Graphics graphics)
         {
             graphics.FillRectangle(new SolidBrush(Color), this.Model);
+        }
+
+        public override string ToString()
+        {
+            string result = "Square";
+            if (Settings.Default.Language == "ru")
+            {
+                result = "Квадрат";
+            }
+            return result;
         }
     }
 }

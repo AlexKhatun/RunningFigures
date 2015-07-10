@@ -16,7 +16,6 @@ C:\Users\AlexKhatuntsev\Documents\Visual Studio 2013\Projects\RunningFigures\Run
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\bin\Debug\RunningFigures.exe.config
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\obj\Debug\RunningFigures.exe
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\obj\Debug\RunningFigures.pdb
-C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\obj\Debug\RunningFigures.csprojResolveAssemblyReference.cache
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\obj\Debug\RunningFigures.MainForm.resources
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\obj\Debug\RunningFigures.Properties.Resources.resources
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\obj\Debug\RunningFigures.MainForm.en.resources

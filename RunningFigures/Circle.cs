@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
+    using Properties;
 
     /// <summary>
     /// Class for circle, describing by rectangle
@@ -60,6 +61,16 @@
         public override void Draw(Graphics graphics)
         {
             graphics.FillEllipse(new SolidBrush(Color), this.Model);
+        }
+
+        public override string ToString()
+        {
+            string result = "Circle";
+            if (Settings.Default.Language == "ru")
+            {
+                result = "Круг";
+            }
+            return result;
         }
     }
 }

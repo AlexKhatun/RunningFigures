@@ -117,16 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SquareButton.Text" xml:space="preserve">
+  <data name="squareButton.Text" xml:space="preserve">
     <value>Square</value>
   </data>
-  <data name="TriangleButton.Text" xml:space="preserve">
+  <data name="triangleButton.Text" xml:space="preserve">
     <value>Triangle</value>
   </data>
-  <data name="CircleButton.Text" xml:space="preserve">
+  <data name="circleButton.Text" xml:space="preserve">
     <value>Circle</value>
   </data>
-  <data name="StopButton.Text" xml:space="preserve">
+  <data name="stopButton.Text" xml:space="preserve">
     <value>Stop</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="binToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="xmlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="jsonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="serializeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="serializeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Serialize</value>
+  </data>
+  <data name="binToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="xmlToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="jsonToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="deserializeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
+  </data>
+  <data name="deserializeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Deserialize</value>
   </data>
 </root>

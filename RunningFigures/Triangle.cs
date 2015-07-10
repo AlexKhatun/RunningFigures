@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
+    using RunningFigures.Properties;
 
     /// <summary>
     /// Class for triangle, describing by rectangle
@@ -59,6 +60,16 @@
         public override void Draw(Graphics graphics)
         {
             graphics.FillPolygon(new SolidBrush(Color), new Point[] { new Point(Model.X + (Model.Width / 2), Model.Y), new Point(Model.X, Model.Y + Model.Height), new Point(Model.X + Model.Width, Model.Y + Model.Height) });
+        }
+
+        public override string ToString()
+        {
+            string result = "Triangle";
+            if (Settings.Default.Language == "ru")
+            {
+                result = "Треугольник";
+            }
+            return result;
         }
     }
 }
