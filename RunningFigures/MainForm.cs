@@ -111,6 +111,15 @@
             foreach (var i in this.figures)
             {
                 i.Draw(e.Graphics);
+            }
+            Thread moveThread = new Thread(MoveFigures);
+            moveThread.Start();
+        }
+
+        private void MoveFigures()
+        {
+            foreach (var i in figures)
+            {
                 if (i.IsMoveble)
                 {
                     try
@@ -125,7 +134,7 @@
                 }
             }
         }
-
+        
         /// <summary>
         /// Stop selected Figure
         /// </summary>

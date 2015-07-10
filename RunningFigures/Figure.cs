@@ -47,14 +47,14 @@
         /// Field, which generic random on all other fields
         /// </summary>
         [DataMember]
-        private Random rand;
+        private RandomNotNull rand;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Figure"/> class. All fields will be random
         /// </summary>
         protected Figure()
         {
-            this.Rand = new Random();
+            this.Rand = new RandomNotNull();
             this.X = this.Rand.Next(50, 440);
             this.Y = this.Rand.Next(50, 150);
             this.Dx = this.Rand.Next(-5, 5);
@@ -86,7 +86,7 @@
             this.Model = model;
             this.IsMoveble = isMove;
             this.IsSelected = false;
-            this.Rand = new Random();
+            this.Rand = new RandomNotNull();
             this.NewClash += this.ClashFigure;
             this.Beep += SystemSounds.Beep.Play;
         }
@@ -208,7 +208,7 @@
         /// <summary>
         /// Gets or sets rand field
         /// </summary>
-        protected Random Rand
+        protected RandomNotNull Rand
         {
             get
             {

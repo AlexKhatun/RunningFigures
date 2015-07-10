@@ -28,5 +28,3 @@ C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\bin\Debug
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\bin\Debug\ru\RunningFigures.resources.dll
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\obj\Debug\en\RunningFigures.resources.dll
 C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\obj\Debug\ru\RunningFigures.resources.dll
-C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\bin\Debug\RunningFigures.exe.CodeAnalysisLog.xml
-C:\Users\AlexKhatuntsev\Documents\GitHub\RunningFigures\RunningFigures\bin\Debug\RunningFigures.exe.lastcodeanalysissucceeded
