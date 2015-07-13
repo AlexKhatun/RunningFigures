@@ -68,6 +68,10 @@
             graphics.FillPolygon(new SolidBrush(Color), new Point[] { new Point(Model.X + (Model.Width / 2), Model.Y), new Point(Model.X, Model.Y + Model.Height), new Point(Model.X + Model.Width, Model.Y + Model.Height) });
         }
 
+        /// <summary>
+        /// Overriding ToString
+        /// </summary>
+        /// <returns>return base + name</returns>
         public override string ToString()
         {
             string result = "Triangle";
@@ -76,7 +80,7 @@
                 result = "Треугольник";
             }
 
-            return result;
+            return result + base.ToString();
         }
     }
 }

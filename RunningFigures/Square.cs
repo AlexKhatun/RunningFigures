@@ -63,6 +63,10 @@
             graphics.FillRectangle(new SolidBrush(Color), this.Model);
         }
 
+        /// <summary>
+        /// Overriding ToString
+        /// </summary>
+        /// <returns>return base + name</returns>
         public override string ToString()
         {
             string result = "Square";
@@ -71,7 +75,7 @@
                 result = "Квадрат";
             }
 
-            return result;
+            return result + base.ToString();
         }
     }
 }

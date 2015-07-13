@@ -29,15 +29,15 @@
         public Rectangle Model;
 
         /// <summary>
-        /// Event clashing figures field
-        /// </summary>
-        private FiguresClash figuresClash = new FiguresClash();
-
-        /// <summary>
         /// Beep counter
         /// </summary>
         [NonSerialized] 
         public BeepDelegate Beep;
+
+        /// <summary>
+        /// Event clashing figures field
+        /// </summary>
+        private FiguresClash figuresClash = new FiguresClash();
 
         /// <summary>
         /// Figure color
@@ -324,7 +324,7 @@
         /// <param name="e">Clash event</param>
         public void ClashFigure(object sender, FiguresClashEventArgs e)
         {
-            Console.WriteLine(e.Figure1.GetType().ToString().Substring(15) + ' ' + e.Figure2.GetType().ToString().Substring(15) + ' ' + e.Point.X + ' ' + e.Point.Y);
+            Console.WriteLine(e.Figure1.ToString() + ' ' + e.Figure2.ToString() + ' ' + "Clashingpoint {" + e.Point.X + ' ' + e.Point.Y + "}");
             try
             {
                 this.Beep();
@@ -333,6 +333,15 @@
             {
                 Console.WriteLine("Для этой фигуры нет бипов!");
             }
+        }
+
+        /// <summary>
+        /// Overriding ToString
+        /// </summary>
+        /// <returns>this Coordinates in string</returns>
+        public override string ToString()
+        {
+            return " X: " + this.X + "  Y: " + this.Y + " ";
         }
 
         /// <summary>

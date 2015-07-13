@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Custom Random without Null
+    /// </summary>
     public class RandomNotNull : Random
     {
         public override int Next()
