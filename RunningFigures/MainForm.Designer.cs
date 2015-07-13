@@ -9,13 +9,13 @@
     public partial class MainForm
     {
         private TreeView figuresListView;
+        private PictureBox drawingArea;
         private Button squareButton;
         private Button triangleButton;
         private Button circleButton;
         private Button stopButton;
         private Button enButton;
         private Button ruButton;
-        private PictureBox drawingArea;
         private Timer timerRefresher;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem serializeToolStripMenuItem;

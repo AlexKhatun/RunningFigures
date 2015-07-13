@@ -31,7 +31,7 @@
         /// <summary>
         /// Event clashing figures field
         /// </summary>
-        public FiguresClash FiguresClash = new FiguresClash();
+        private FiguresClash figuresClash = new FiguresClash();
 
         /// <summary>
         /// Beep counter
@@ -205,6 +205,22 @@
         /// </summary>
         [DataMember]
         public bool IsMoveble { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether figures clashed
+        /// </summary>
+        public FiguresClash FiguresClash
+        {
+            get
+            {
+                return this.figuresClash;
+            }
+
+            set
+            {
+                this.figuresClash = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets rand field

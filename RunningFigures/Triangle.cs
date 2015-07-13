@@ -42,12 +42,18 @@
         /// <param name="figures">All Figure list</param>
         public override void Move(PictureBox drawingArea, List<Figure> figures)
         {
-            foreach (var i in figures)
+            try
             {
-                if (this != i && this.IntersectWith(i))
+                foreach (var i in figures)
                 {
-                    FiguresClash.FigureClash(this, i);
+                    if (this != i && this.IntersectWith(i))
+                    {
+                        FiguresClash.FigureClash(this, i);
+                    }
                 }
+            }
+            catch (InvalidOperationException)
+            {
             }
 
             base.Move(drawingArea, figures);
@@ -69,6 +75,7 @@
             {
                 result = "Треугольник";
             }
+
             return result;
         }
     }

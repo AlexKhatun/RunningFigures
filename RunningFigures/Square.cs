@@ -70,6 +70,7 @@
             {
                 result = "Квадрат";
             }
+
             return result;
         }
     }

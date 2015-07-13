@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RunningFigures
+﻿namespace RunningFigures
 {
+    using System;
+
     public class RandomNotNull : Random
     {
         public override int Next()
@@ -15,6 +11,7 @@ namespace RunningFigures
             {
                 result = base.Next();
             }
+
             return result;
         }
 
@@ -25,6 +22,7 @@ namespace RunningFigures
             {
                 result = base.Next(maxValue);
             }
+
             return result;
         }
 
@@ -35,6 +33,7 @@ namespace RunningFigures
             {
                 result = base.Next(minValue, maxValue);
             }
+
             return result;
         }
     }

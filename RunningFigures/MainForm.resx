@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;drawingArea.Name" xml:space="preserve">
-    <value>drawingArea</value>
+  <data name="&gt;&gt;xmlToolStripMenuItem.Name" xml:space="preserve">
+    <value>xmlToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;stopButton.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -139,6 +139,9 @@
   <data name="&gt;&gt;figuresListView.Type" xml:space="preserve">
     <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;enButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;drawingArea.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -146,14 +149,14 @@
     <value>Квадрат</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="binToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 22</value>
+  <data name="stopButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 32</value>
   </data>
   <data name="&gt;&gt;circleButton.Name" xml:space="preserve">
     <value>circleButton</value>
   </data>
-  <data name="&gt;&gt;enButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="binToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 22</value>
   </data>
   <data name="&gt;&gt;stopButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -173,17 +176,20 @@
   <data name="ruButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>634, 32</value>
   </data>
-  <data name="&gt;&gt;enButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="&gt;&gt;stopButton.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="beepCountTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="ruButton.Text" xml:space="preserve">
     <value>Ру</value>
   </data>
   <data name="squareButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="circleButton.Text" xml:space="preserve">
+    <value>Круг</value>
   </data>
   <data name="xmlToolStripMenuItem1.Text" xml:space="preserve">
     <value>XML</value>
@@ -197,17 +203,17 @@
   <data name="&gt;&gt;xmlToolStripMenuItem1.Name" xml:space="preserve">
     <value>xmlToolStripMenuItem1</value>
   </data>
-  <data name="&gt;&gt;xmlToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;timerRefresher.Name" xml:space="preserve">
     <value>timerRefresher</value>
   </data>
   <data name="figuresListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="xmlToolStripMenuItem.Text" xml:space="preserve">
-    <value>XML</value>
+  <data name="&gt;&gt;squareButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;beepCountTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="stopButton.Text" xml:space="preserve">
     <value>Стоп</value>
@@ -218,14 +224,14 @@
   <data name="&gt;&gt;squareButton.Name" xml:space="preserve">
     <value>squareButton</value>
   </data>
-  <data name="jsonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 22</value>
-  </data>
   <data name="triangleButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 23</value>
   </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="&gt;&gt;serializeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ruButton.Name" xml:space="preserve">
+    <value>ruButton</value>
   </data>
   <data name="&gt;&gt;squareButton.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -248,23 +254,20 @@
   <data name="&gt;&gt;binToolStripMenuItem1.Name" xml:space="preserve">
     <value>binToolStripMenuItem1</value>
   </data>
+  <data name="minusButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
   <data name="&gt;&gt;circleButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;triangleButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="figuresListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 224</value>
-  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="serializeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 20</value>
-  </data>
-  <data name="ruButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
   </data>
   <data name="triangleButton.Text" xml:space="preserve">
     <value>Треугольник</value>
@@ -296,8 +299,8 @@
   <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;squareButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="figuresListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 224</value>
   </data>
   <data name="jsonToolStripMenuItem.Text" xml:space="preserve">
     <value>Json</value>
@@ -312,20 +315,14 @@
   <data name="&gt;&gt;beepCountTextBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>676, 307</value>
-  </data>
-  <data name="minusButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
+  <data name="&gt;&gt;drawingArea.Name" xml:space="preserve">
+    <value>drawingArea</value>
   </data>
   <data name="triangleButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="squareButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 23</value>
-  </data>
-  <data name="minusButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
   </data>
   <data name="&gt;&gt;serializeToolStripMenuItem.Name" xml:space="preserve">
     <value>serializeToolStripMenuItem</value>
@@ -357,8 +354,8 @@
   <data name="&gt;&gt;jsonToolStripMenuItem1.Name" xml:space="preserve">
     <value>jsonToolStripMenuItem1</value>
   </data>
-  <data name="&gt;&gt;ruButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
   </data>
   <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -366,29 +363,29 @@
   <data name="&gt;&gt;triangleButton.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;drawingArea.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="stopButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="minusButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
   <data name="&gt;&gt;plusButton.Name" xml:space="preserve">
     <value>plusButton</value>
   </data>
-  <data name="&gt;&gt;beepCountTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ruButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;plusButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;serializeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="xmlToolStripMenuItem.Text" xml:space="preserve">
+    <value>XML</value>
+  </data>
+  <data name="deserializeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Десериализовать</value>
   </data>
   <data name="&gt;&gt;minusButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="stopButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 32</value>
+  <data name="&gt;&gt;minusButton.Name" xml:space="preserve">
+    <value>minusButton</value>
   </data>
   <data name="&gt;&gt;jsonToolStripMenuItem.Name" xml:space="preserve">
     <value>jsonToolStripMenuItem</value>
@@ -402,20 +399,17 @@
   <data name="&gt;&gt;binToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;enButton.Parent" xml:space="preserve">
+  <data name="binToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bin</value>
+  </data>
+  <data name="&gt;&gt;ruButton.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ruButton.Name" xml:space="preserve">
-    <value>ruButton</value>
-  </data>
-  <data name="&gt;&gt;squareButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;enButton.Name" xml:space="preserve">
-    <value>enButton</value>
   </data>
   <data name="&gt;&gt;figuresListView.Name" xml:space="preserve">
     <value>figuresListView</value>
+  </data>
+  <data name="&gt;&gt;enButton.Name" xml:space="preserve">
+    <value>enButton</value>
   </data>
   <data name="drawingArea.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -435,17 +429,20 @@
   <data name="serializeToolStripMenuItem.Text" xml:space="preserve">
     <value>Сериализовать</value>
   </data>
-  <data name="enButton.Text" xml:space="preserve">
-    <value>En</value>
+  <data name="&gt;&gt;minusButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="binToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bin</value>
+  <data name="&gt;&gt;enButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;deserializeToolStripMenuItem.Name" xml:space="preserve">
-    <value>deserializeToolStripMenuItem</value>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>676, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;xmlToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -462,17 +459,17 @@
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="&gt;&gt;drawingArea.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ruButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="jsonToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Json</value>
+  <data name="&gt;&gt;xmlToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;xmlToolStripMenuItem.Name" xml:space="preserve">
-    <value>xmlToolStripMenuItem</value>
+  <data name="&gt;&gt;jsonToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;circleButton.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -486,35 +483,38 @@
   <data name="jsonToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 22</value>
   </data>
-  <data name="circleButton.Text" xml:space="preserve">
-    <value>Круг</value>
+  <data name="&gt;&gt;deserializeToolStripMenuItem.Name" xml:space="preserve">
+    <value>deserializeToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;jsonToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>676, 307</value>
   </data>
-  <data name="deserializeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Десериализовать</value>
+  <data name="&gt;&gt;squareButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;minusButton.Name" xml:space="preserve">
-    <value>minusButton</value>
+  <data name="stopButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;minusButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;enButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="jsonToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Json</value>
   </data>
   <data name="&gt;&gt;jsonToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="enButton.Text" xml:space="preserve">
+    <value>En</value>
   </data>
   <data name="&gt;&gt;triangleButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="beepCountTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="jsonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 22</value>
   </data>
   <data name="&gt;&gt;minusButton.ZOrder" xml:space="preserve">
     <value>1</value>

@@ -112,13 +112,14 @@
             {
                 i.Draw(e.Graphics);
             }
-            Thread moveThread = new Thread(MoveFigures);
+
+            Thread moveThread = new Thread(this.MoveFigures);
             moveThread.Start();
         }
 
         private void MoveFigures()
         {
-            foreach (var i in figures)
+            foreach (var i in this.figures)
             {
                 if (i.IsMoveble)
                 {
